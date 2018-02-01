@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "306124997122",
+    "firebase_url": "https://syllorg-bca3a.firebaseio.com",
+    "project_id": "syllorg-bca3a",
+    "storage_bucket": "syllorg-bca3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306124997122:android:393f6f4873309c9a",
+        "android_client_info": {
+          "package_name": "com.stackme.thewire.syllorg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306124997122-ej3h8j3t38ncf0h39f6bogolv3n2et6s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stackme.thewire.syllorg",
+            "certificate_hash": "b3b363cdc6200a516f35367614a7db6d217e7877"
+          }
+        },
+        {
+          "client_id": "306124997122-ff06te0oddmgjn12d12srbrbbljk4312.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq-XDddQDuWREOxGoOwAP935dCcnE3xwI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306124997122-ff06te0oddmgjn12d12srbrbbljk4312.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
