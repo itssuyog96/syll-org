@@ -42,7 +42,6 @@ import java.util.concurrent.TimeUnit;
 public class GoogleLogin extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     SignInButton signInButton;
-    Button signOutButton;
     TextView statusTextView;
     GoogleApiClient mGoogleApiClient;
 
@@ -58,6 +57,7 @@ public class GoogleLogin extends AppCompatActivity implements GoogleApiClient.On
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .build();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
@@ -66,12 +66,9 @@ public class GoogleLogin extends AppCompatActivity implements GoogleApiClient.On
 
         mAuth = FirebaseAuth.getInstance();
 
-        statusTextView = (TextView) findViewById(R.id.status_textView);
-        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
+        statusTextView = findViewById(R.id.status_textView);
+        signInButton = findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
-
-        signOutButton = (Button) findViewById(R.id.signOutButton);
-        signOutButton.setOnClickListener(this);
     }
 
     @Override
@@ -79,10 +76,13 @@ public class GoogleLogin extends AppCompatActivity implements GoogleApiClient.On
         super.onStart();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
         if(currentUser != null){
-            setStatus("Hello " + currentUser.getDisplayName());
-        }else{
+            startActivity(new Intent(GoogleLogin.this, MainActivity.class));
+//        } else if(account != null){
+//            firebaseAuthWithGoogle(account);
+        } else{
             setStatus("Sign In to Continue");
         }
     }
@@ -92,9 +92,6 @@ public class GoogleLogin extends AppCompatActivity implements GoogleApiClient.On
         switch(view.getId()){
             case R.id.sign_in_button:
                 signIn();
-                break;
-            case R.id.signOutButton:
-                signOut();
                 break;
         }
     }
@@ -114,7 +111,6 @@ public class GoogleLogin extends AppCompatActivity implements GoogleApiClient.On
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
-
             }catch (ApiException e){
                 Log.w(TAG, "Google Sign In Failed", e);
             }
@@ -126,13 +122,15 @@ public class GoogleLogin extends AppCompatActivity implements GoogleApiClient.On
 
         if(result.isSuccess()){
             GoogleSignInAccount account = result.getSignInAccount();
-            setStatus("Hello " + account.getDisplayName());
+            firebaseAuthWithGoogle(account);
         }else{
             setStatus("Not Signed In");
         }
     }
 
     public void signOut(){
+
+        FirebaseAuth.getInstance().signOut();
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {
@@ -152,7 +150,7 @@ public class GoogleLogin extends AppCompatActivity implements GoogleApiClient.On
                         if(task.isSuccessful()){
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser currentUser = mAuth.getCurrentUser();
-                            setStatus("F: Hello " + currentUser.getDisplayName());
+                            startActivity(new Intent(GoogleLogin.this, MainActivity.class));
                         }else{
                             Log.w(TAG, "singnInWithCredential:failure");
                             Snackbar.make(findViewById(R.id.sign_in_layout), "Authentication failed", Snackbar.LENGTH_SHORT).show();
