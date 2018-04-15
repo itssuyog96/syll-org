@@ -2,6 +2,7 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![Build Status](https://travis-ci.org/itssuyog96/syll-org.svg?branch=master)](https://travis-ci.org/itssuyog96/syll-org)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fitssuyog96%2Fsyll-org.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fitssuyog96%2Fsyll-org?ref=badge_shield)
 TODO: Put more badges here.
 
 > SyllOrg is an android app to help students manage their schedule according to the syllabus provided by the University.
@@ -46,3 +47,6 @@ Small note: If editing the README, please conform to the [standard-readme](https
 ## License
 
 MIT © 2018 SyllOrg
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fitssuyog96%2Fsyll-org.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fitssuyog96%2Fsyll-org?ref=badge_large)
